@@ -105,14 +105,40 @@ A implementação de todos esses recursos da AWS geraria uma conta de USD 92,36/
 
 Antes de da execução de qualquer comando é importante garantir que vc tenha instalado em seu ambiente as dependencias da AWS CLI e do terraform.
 
-Após isso vamos configurar seu ambiente com suas credenciais
+Após isso vamos configurar seu ambiente com suas credenciais, lembrando esses são passos executáveis em Windows no POWERSHELL:
 
 <pre>
-```powershell
 $ aws configure
 AWS Access Key ID [None]: {SUA_ACCESS_KEY}
 AWS Secret Access Key [None]: {SUA_SECRET_ACCESS_KEY}
 Default region name [None]: us-east-1
 Default output format [None]: table
-```
+</pre>
+
+Com o ambiente configurado com suas credencias da AWS, proximo passo é criar seu bucket S3 no Dashboard da aws, lembre-se de alterar o arquivo **provider.tf** para que o nome do seu bucket seja o mesmo declarado no arquivo.
+
+Agora antes de começar a execução do terraform, você deverá criar um arquivo .env para declarar algumas variáveis do seu banco de dados, esse passo é opcional, porém garante uma segurança e integridade maior para seu banco de dados, caso não execute esse passo, o banco de dados será criado com um usuario e nome do banco padrões, e você precisará criar a senha durante a execução do terraform.
+
+Conteúdo do arquivo .env
+
+<pre>
+TF_VAR_prod_rds_password={senha_do_db}
+TF_VAR_prod_rds_username={usuário_do_db}
+TF_VAR_prod_rds_db_name={nome_do_db}
+</pre>
+
+Com o arquivo já criado, execute os seguintes comando para habilitar seu ambiente com as variáveis do banco.
+
+<pre>
+Get-Content .env | ForEach-Object {
+    $envVar = $_ -split '=', 2
+    [System.Environment]::SetEnvironmentVariable($envVar[0], $envVar[1], [System.EnvironmentVariableTarget]::Process)
+}
+</pre>
+
+Tudo certo, podemos inicializar nosso aplicação na AWS, execute os comandos a seguir:
+
+<pre>
+terraform init
+terraform apply
 </pre>
