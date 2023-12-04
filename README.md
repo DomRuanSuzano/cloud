@@ -90,3 +90,9 @@ O Amazon Relational Database Service (RDS) é um serviço gerenciado de bancos d
 - **Backup:** Mantém backups por 5 dias para segurança, sem criar um snapshot final.
 
 Essas configurações garantem que o banco de dados seja acessível, seguro e esteja localizado em sub-redes específicas para melhor organização.
+
+# Armazenamento do Estado (Backend):
+
+- **Amazon S3:**
+  - O Terraform armazena o estado da infraestrutura no Amazon S3.
+  - Utiliza um bucket chamado "bucket-s3-dom" criado manualmente pelo Dashboard da AWS.
