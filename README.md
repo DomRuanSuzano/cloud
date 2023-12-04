@@ -15,40 +15,40 @@ Dito isso, temos uma gama vasta de possíveis regiões a serem escolhida, para e
 
 Este repositório contém scripts Terraform para criar uma infraestrutura básica na Amazon Web Services (AWS) destinada a um ambiente de produção. A seguir, uma explicação das principais características da configuração:
 
-### Virtual Private Cloud (VPC)
+## Virtual Private Cloud (VPC)
 
 Foi criada uma VPC (Virtual Private Cloud) com o bloco CIDR `10.0.0.0/16`, permitindo a segmentação de recursos de rede. A VPC está configurada para oferecer suporte a resolução DNS e hostnames DNS.
 
-### Sub-redes Públicas
+## Sub-redes Públicas
 
 Duas sub-redes públicas foram estabelecidas para alocar recursos que necessitam de acessibilidade direta à internet. Cada sub-rede possui seu bloco CIDR exclusivo (`10.0.1.0/24` e `10.0.2.0/24`) e está associada a uma zona de disponibilidade específica.
 
-### Sub-redes Privadas
+## Sub-redes Privadas
 
 Outras duas sub-redes foram configuradas como privadas (`10.0.3.0/24` e `10.0.4.0/24`), destinadas a recursos que não precisam de acesso direto à internet. Cada sub-rede privada está associada a uma zona de disponibilidade.
 
-### Tabelas de Roteamento
+## Tabelas de Roteamento
 
 Foram criadas tabelas de roteamento separadas para sub-redes públicas e privadas, permitindo um controle preciso sobre o tráfego. As sub-redes estão associadas às tabelas de roteamento correspondentes.
 
-### Gateway de Internet
+## Gateway de Internet
 
 Um Gateway de Internet foi configurado para fornecer conectividade à internet para as sub-redes públicas. Rotas adequadas foram definidas nas tabelas de roteamento públicas para garantir a rota correta do tráfego.
 
-### Gateway NAT
+## Gateway NAT
 
 Um Gateway NAT foi implementado para permitir que instâncias em sub-redes privadas acessem a internet para atualizações e downloads, sem expor diretamente seus endereços IP. Foi associado um endereço IP elástico a este Gateway NAT.
 
 
-## Balanceador de Carga para Aplicações em Produção
+# Balanceador de Carga para Aplicações em Produção
 
 O ALB é como um "tráfego manager" que direciona os pedidos dos usuários para diferentes partes da sua aplicação, garantindo que tudo funcione sem problemas.
 
-### Como Funciona
+## Como Funciona
 
 O ALB escuta o tráfego na porta 80 (usada para acessar sites) e encaminha esses pedidos para a parte correta da sua aplicação. Isso ajuda a manter tudo equilibrado e funcionando sem problemas.
 
-### Segurança do Load Balancer
+## Segurança do Load Balancer
 
 Há também uma configuração de segurança para garantir que apenas o tráfego necessário seja permitido.
 
@@ -67,3 +67,26 @@ Por meio de uma política de escalonamento automático que monitorar a utilizaç
 ## Segurança das instâncias
 
 A segurança é uma prioridade, e a configuração inclui grupos de segurança, políticas IAM e permissões específicas. Essas medidas visam proteger a infraestrutura contra acessos não autorizados, garantindo a integridade dos dados.
+
+# Configuração do Banco de Dados Relacional (RDS)
+
+O Amazon Relational Database Service (RDS) é um serviço gerenciado de bancos de dados da AWS. Ele simplifica a administração de bancos de dados relacionais na nuvem, automatizando tarefas operacionais complexas. Com suporte para vários motores de banco de dados, o RDS oferece facilidade de uso, escalabilidade e segurança integrada. É uma solução eficaz para implementar, operar e escalar bancos de dados na nuvem.
+
+## Grupo de Sub-redes do Banco de Dados
+
+- **Objetivo:** Organizar a localização do banco de dados em sub-redes específicas.
+- **Detalhes:** As sub-redes privadas são designadas para hospedar o RDS, proporcionando uma estrutura organizada.
+
+## Instância do Banco de Dados
+
+- **Objetivo:** Configurar a instância do banco de dados.
+- **Detalhes:**
+  - **Nome e Credenciais:** Define o nome e as credenciais de acesso.
+  - **Motor do Banco de Dados:** Utiliza o MySQL.
+  - **Tipo de Instância:** Especifica o tipo de hardware da instância.
+  - **Armazenamento:** Aloca 20 GB para armazenamento.
+  - **Segurança:** Gerencia quem pode acessar o banco de dados.
+
+- **Backup:** Mantém backups por 5 dias para segurança, sem criar um snapshot final.
+
+Essas configurações garantem que o banco de dados seja acessível, seguro e esteja localizado em sub-redes específicas para melhor organização.
