@@ -2,7 +2,7 @@
 
 O objetivo do projeto é provisionar uma arquitetura na AWS utilizando o Terraform, que englobe o uso de um Application Load Balancer (ALB), instâncias EC2 com Auto Scaling e um banco de dados RDS.
 
-## Região
+# Região
 
 A Nuvem AWS abrange 102 zonas de disponibilidade em 32 regiões geográficas por todo o mundo, com planos já divulgados para mais 15 zonas de disponibilidade e outras 5 regiões da AWS no Canadá, na Alemanha, na Malásia, na Nova Zelândia e na Tailândia.  
 
