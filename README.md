@@ -2,13 +2,14 @@
 
 O objetivo do projeto é provisionar uma arquitetura na AWS utilizando o Terraform, que englobe o uso de um Application Load Balancer (ALB), instâncias EC2 com Auto Scaling e um banco de dados RDS.
 
-### Região
+# Região
 
 A Nuvem AWS abrange 102 zonas de disponibilidade em 32 regiões geográficas por todo o mundo, com planos já divulgados para mais 15 zonas de disponibilidade e outras 5 regiões da AWS no Canadá, na Alemanha, na Malásia, na Nova Zelândia e na Tailândia.  
 
 Dito isso, temos uma gama vasta de possíveis regiões a serem escolhida, para este projeto a região escolhida foi a Virgínia do Norte (us-east-1), devido principalmente aos seguintes fatores:
-    *Redundância e Resiliência*: A região us-east-1 possui várias zonas de disponibilidade, permitindo a construção de arquiteturas altamente disponíveis e resilientes.
-    *Histórico de Confiabilidade*: Devido à sua longa existência, a região us-east-1 tem um histórico comprovado de confiabilidade e estabilidade.
+
+- **Redundância e Resiliência**: A região us-east-1 possui várias zonas de disponibilidade, permitindo a construção de arquiteturas altamente disponíveis e resilientes.
+- **Histórico de Confiabilidade**: Devido à sua longa existência, a região us-east-1 tem um histórico comprovado de confiabilidade e estabilidade.
 
 # Infraestrutura da AWS para Ambiente de Produção
 
@@ -43,19 +44,26 @@ Um Gateway NAT foi implementado para permitir que instâncias em sub-redes priva
 
 O ALB é como um "tráfego manager" que direciona os pedidos dos usuários para diferentes partes da sua aplicação, garantindo que tudo funcione sem problemas.
 
-### Características Principais
-
-- **Nome:** "prod"
-- **Tipo:** Balanceador de Carga de Aplicação
-- **Acesso Interno:** Não
-- **Sub-redes:** [Sub-rede Pública 1, Sub-rede Pública 2]
-
-## Como Funciona
+### Como Funciona
 
 O ALB escuta o tráfego na porta 80 (usada para acessar sites) e encaminha esses pedidos para a parte correta da sua aplicação. Isso ajuda a manter tudo equilibrado e funcionando sem problemas.
 
-## Segurança
+### Segurança do Load Balancer
 
 Há também uma configuração de segurança para garantir que apenas o tráfego necessário seja permitido.
 
 Esta configuração ajuda a garantir que sua aplicação seja escalável, confiável e segura na nuvem da AWS.
+
+# Instâncias EC2
+
+O ambiente é composto por instâncias configuradas para hospedar a aplicação backend. Cada instância é ajustada com as especificações necessárias, como tipo de instância, imagem base e scripts de inicialização.
+
+## Autoscaling
+
+Para lidar com flutuações na carga de trabalho, foi implementado um sistema de escalonamento automático. Isso permite que o número de instâncias seja ajustado dinamicamente conforme necessário para manter o desempenho ideal e a eficiência operacional.
+
+Por meio de uma política de escalonamento automático que monitorar a utilização da CPU. Se a utilização ultrapassar um limiar especificado, a política adiciona novas instâncias para distribuir a carga, garantindo uma resposta eficiente mesmo em períodos de tráfego intenso.
+
+## Segurança das instâncias
+
+A segurança é uma prioridade, e a configuração inclui grupos de segurança, políticas IAM e permissões específicas. Essas medidas visam proteger a infraestrutura contra acessos não autorizados, garantindo a integridade dos dados.
