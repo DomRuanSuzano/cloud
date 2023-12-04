@@ -60,7 +60,7 @@ O ambiente é composto por instâncias configuradas para hospedar a aplicação 
 
 ## Autoscaling
 
-Para lidar com flutuações na carga de trabalho, foi implementado um sistema de escalonamento automático. Isso permite que o número de instâncias seja ajustado dinamicamente conforme necessário para manter o desempenho ideal e a eficiência operacional.
+Para lidar com flutuações na carga de trabalho, foi implementado um sistema de escalonamento automático. Isso permite que o número de instâncias seja ajustado dinamicamente por alarmes conforme necessário para manter o desempenho ideal e a eficiência operacional.
 
 Por meio de uma política de escalonamento automático que monitorar a utilização da CPU. Se a utilização ultrapassar um limiar especificado, a política adiciona novas instâncias para distribuir a carga, garantindo uma resposta eficiente mesmo em períodos de tráfego intenso.
 
@@ -100,3 +100,19 @@ Essas configurações garantem que o banco de dados seja acessível, seguro e es
 # Estimativa de custos
 
 A implementação de todos esses recursos da AWS geraria uma conta de USD 92,36/mês, e pode ser acompanhada melhor neste link da [AWS calculator](https://calculator.aws/#/estimate?id=5821c538e1597be24b49c6095380a7aeb633ce84)
+
+# Utilização e Execução
+
+Antes de da execução de qualquer comando é importante garantir que vc tenha instalado em seu ambiente as dependencias da AWS CLI e do terraform.
+
+Após isso vamos configurar seu ambiente com suas credenciais
+
+<pre>
+```powershell
+$ aws configure
+AWS Access Key ID [None]: {SUA_ACCESS_KEY}
+AWS Secret Access Key [None]: {SUA_SECRET_ACCESS_KEY}
+Default region name [None]: us-east-1
+Default output format [None]: table
+```
+</pre>
