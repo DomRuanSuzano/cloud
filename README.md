@@ -142,3 +142,9 @@ Tudo certo, podemos inicializar nosso aplicação na AWS, execute os comandos a 
 terraform init
 terraform apply
 </pre>
+
+A aplicação começará a ser lançada, uma boa hora pra uma pausa enquanto espera a aplicação entrar em funcionamento.
+
+Quando pronta você conseguirá ver como output o dns da aplicação pelo próprio prompt aberto, então acrecentando um "/docs" você verá sua aplicação funcionando perfeitamente.
+
+E por fim caso queria destruir tudo execute um **terraform destroy** e não verá mais a aplicação em funcionamento da AWS.
