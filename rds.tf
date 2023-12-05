@@ -14,7 +14,7 @@ resource "aws_db_instance" "prod_db_instance" {
   allocated_storage       = "20"
   vpc_security_group_ids  = [aws_security_group.rds_prod.id]
   db_subnet_group_name    = aws_db_subnet_group.prod_db_subnet_group.name
-  multi_az                = false
+  multi_az                = true
   storage_type            = "gp2"
   backup_retention_period = 5
   skip_final_snapshot     = true

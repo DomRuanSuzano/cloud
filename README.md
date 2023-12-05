@@ -97,6 +97,10 @@ Essas configurações garantem que o banco de dados seja acessível, seguro e es
   - O Terraform armazena o estado da infraestrutura no Amazon S3.
   - Utiliza um bucket chamado "bucket-s3-dom" criado manualmente pelo Dashboard da AWS.
 
+# Diagrama da Arquitetura na AWS
+
+![Diagrama](./assets/diagrama.png)
+
 # Estimativa de custos
 
 A implementação de todos esses recursos da AWS geraria uma conta de USD 92,36/mês, e pode ser acompanhada melhor neste link da [AWS calculator](https://calculator.aws/#/estimate?id=5821c538e1597be24b49c6095380a7aeb633ce84)
