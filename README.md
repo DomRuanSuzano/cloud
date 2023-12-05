@@ -147,4 +147,16 @@ A aplicação começará a ser lançada, uma boa hora pra uma pausa enquanto esp
 
 Quando pronta você conseguirá ver como output o dns da aplicação pelo próprio prompt aberto, então acrecentando um "/docs" você verá sua aplicação funcionando perfeitamente.
 
-E por fim caso queria destruir tudo execute um **terraform destroy** e não verá mais a aplicação em funcionamento da AWS.
+E por fim caso queria destruir tudo execute:
+
+<pre>
+terraform destroy
+</pre>
+
+E não verá mais a aplicação em funcionamento da AWS.
+
+# Locust (B+)
+
+Ao finalizar o terraform apply um IP público será disponibilizado também, que se trata do ip que te encaminhará para o locust, ferramenta de teste de carga e desempenho, adicione a porta 8089 ao ip e você terá acesso ao Dashboard do locust.
+
+![Dashboard do Locust](./assets/locust.png)
